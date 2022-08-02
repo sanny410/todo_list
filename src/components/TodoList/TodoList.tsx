@@ -11,12 +11,14 @@ const TodoList = () => {
     return (
         <div className="todo-list _container">
             <h2 className="todo-list__title">Список задач</h2>
-            <input className="search__task" type="text" placeholder="Поиск"/>
+            <input className="search__task input" type="text" placeholder="Поиск"/>
             <ul className="list__task">
                 {todo.map((item, id) => {
                     return <TodoItem key={id} item={item} id={id + 1} setTodo={setTodo}/>
                 })}
             </ul>
+            <input className="add-task input" type="text" placeholder="Новая задача"/>
+            <button className="btn send-btn">Добавить</button>
         </div>
     );
 };

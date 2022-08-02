@@ -1,0 +1,50 @@
+.todo-list {
+  display: grid;
+  grid-template-rows: 60px 30px 1fr 40px;
+  row-gap: 20px;
+  padding: 30px 20px 20px 30px;
+  border-radius: 0 20px 20px 0;
+  border-right-color: #0F3046;
+  background: #F9F7F7;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+.todo-list .todo-list__title {
+  width: 100%;
+  font-size: 36px;
+  font-weight: bold;
+  color: #112D4E;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+.todo-list .search__task {
+  background: #DBE2EF;
+}
+.todo-list .list__task {
+  width: 100%;
+}
+.todo-list .list__task .todo-list__item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: #112D4E;
+  font-size: 24px;
+  padding: 5px;
+  margin-bottom: 5px;
+  border: 1px solid rgba(15, 48, 70, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+.todo-list .list__task .todo-list__item .icons {
+  display: flex;
+  flex-direction: row;
+}
+.todo-list .list__task .todo-list__item .icons img {
+  display: block;
+  margin-left: 15px;
+}
+.todo-list .add-task {
+  background-color: #F9F7F7;
+}
+
+/*# sourceMappingURL=style.css.map */

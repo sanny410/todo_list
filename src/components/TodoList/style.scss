@@ -1,10 +1,8 @@
 .todo-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 20px;
-  padding: 30px 20px 0 30px;
+  display: grid;
+  grid-template-rows: 60px 30px 1fr 40px;
+  row-gap: 20px;
+  padding: 30px 20px 20px 30px;
   border-radius: 0 20px 20px 0;
   border-right-color: #0F3046;
   background: #F9F7F7;
@@ -19,17 +17,7 @@
   }
 
   .search__task {
-    font-size: 18px;
-    width: 100%;
     background: #DBE2EF;
-    border: 1px solid rgba(177, 177, 177, 0.4);
-    border-radius: 5px;
-    padding: 5px;
-
-    &:focus {
-      outline: none;
-      border-color: #112D4E;
-    }
   }
 
   .list__task {
@@ -43,7 +31,7 @@
       align-items: center;
       color: #112D4E;
       font-size: 24px;
-      padding: 5px 10px;
+      padding: 5px;
       margin-bottom: 5px;
       border: 1px solid rgba(15, 48, 70, 0.3);;
       border-radius: 10px;
@@ -61,4 +49,7 @@
     }
   }
 
+  .add-task {
+    background-color: #F9F7F7;
+  }
 }
