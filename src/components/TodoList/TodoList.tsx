@@ -1,4 +1,4 @@
-import React, { useRef, MutableRefObject} from 'react';
+import React, {useRef, MutableRefObject, useState} from 'react';
 import TodoItem from "./TodoItem";
 import './style.scss'
 
@@ -13,7 +13,13 @@ type Task = {
 
 const TodoList = ({todo, setTodo, setEditTodoItem, editTodoItem}
                       : {todo: Task[], setTodo: Function, setEditTodoItem: Function, editTodoItem: Task}) => {
+
     const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
+    const [value, setValue] = useState('')
+
+    const filteredListTodos = todo.filter(item => {
+        return item.task.toLowerCase().includes(value.toLowerCase())
+    })
 
     const addTodo = () => {
         let newValue = inputRef.current.value;
@@ -22,7 +28,6 @@ const TodoList = ({todo, setTodo, setEditTodoItem, editTodoItem}
                 executor: "", comment: "" }
             setTodo((todo: Task[]) => [...todo, newTask])
             inputRef.current.value = ''
-            console.log(todo)
         }
     }
 
@@ -32,12 +37,17 @@ const TodoList = ({todo, setTodo, setEditTodoItem, editTodoItem}
         }
     }
 
+
     return (
         <div className="todo-list _container">
             <h2 className="todo-list__title">Список задач</h2>
-            <input className="search__task input" type="text" placeholder="Поиск"/>
+            <input className="search__task input"
+                   type="text"
+                   placeholder="Поиск"
+                   onChange={(event) => setValue(event.target.value)}
+            />
             <ul className="list__task">
-                {todo.map((item, id) => {
+                {filteredListTodos.map((item, id) => {
                     return <TodoItem key={id}
                                      item={item}
                                      id={id + 1}

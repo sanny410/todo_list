@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import './App.scss';
 import TodoList from '../TodoList/TodoList'
 import TodoEdit from "../TodoEdit/TodoEdit";
@@ -8,9 +8,6 @@ import { Task} from "../TodoList/TodoItem";
 function App() {
     const [ todo, setTodo ] = useState(data || []);
     const [ editTodoItem, setEditTodoItem ] = useState<Task>({id: 0, task: '', status: '', executor: '', comment: ''});
-
-
-    useEffect(() => console.log(editTodoItem), [editTodoItem])
 
 
   return (
