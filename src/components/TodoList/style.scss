@@ -41,6 +41,18 @@
         transform: scale(1);
       }
 
+      &.expect {
+        background-color: #B2AD9F;
+      }
+
+      &.in_the_process {
+        background-color: #8BC3D9;
+      }
+
+      &.finished {
+        background-color: #AAF53D;
+      }
+
       .icons {
         display: flex;
         flex-direction: row;

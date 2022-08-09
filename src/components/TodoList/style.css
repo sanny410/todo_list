@@ -38,6 +38,15 @@
 .todo-list .list__task .todo-list__item:hover {
   transform: scale(1);
 }
+.todo-list .list__task .todo-list__item.expect {
+  background-color: #B2AD9F;
+}
+.todo-list .list__task .todo-list__item.in_the_process {
+  background-color: #8BC3D9;
+}
+.todo-list .list__task .todo-list__item.finished {
+  background-color: #AAF53D;
+}
 .todo-list .list__task .todo-list__item .icons {
   display: flex;
   flex-direction: row;

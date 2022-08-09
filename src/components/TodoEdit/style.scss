@@ -7,7 +7,16 @@
   padding: 30px;
 
   .edit-item__title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin-bottom: 20px;
+
+    img {
+      width: 24px;
+      height: 24px;
+      margin-left: 10px;
+    }
   }
 
   form {

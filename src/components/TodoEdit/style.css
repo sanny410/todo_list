@@ -7,7 +7,15 @@
   padding: 30px;
 }
 .todo-list__edit-item .edit-item__title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-bottom: 20px;
+}
+.todo-list__edit-item .edit-item__title img {
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
 }
 .todo-list__edit-item form {
   display: flex;
