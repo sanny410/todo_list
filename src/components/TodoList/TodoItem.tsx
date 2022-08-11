@@ -1,13 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import {Task} from "../App/App";
 import './style.scss'
 
-export type Task = {
-    id: number,
-    task: string,
-    status: string,
-    executor: string,
-    comment: string
-}
 
 const TodoItem = ({item, id, setTodo, todo, setEditTodoItem}:
                       {item: Task, id: number, setTodo: Function, todo: Task[],
@@ -15,6 +9,8 @@ const TodoItem = ({item, id, setTodo, todo, setEditTodoItem}:
 
     const [colorStatus, setColorStatus] = useState('expect');
 
+
+    //Изменяет цвет задачи в зависимости от статуса при каждом его изменении
     useEffect(() => {
         if(item.status === "Ожидает") {
             setColorStatus('expect')
@@ -23,14 +19,22 @@ const TodoItem = ({item, id, setTodo, todo, setEditTodoItem}:
         } else setColorStatus('finished')
     }, [item.status])
 
-    const deleteTask = (id: number) => {
+    /**
+     * Изменяет массив при удалении одной задачи
+     */
+    const deleteTask = () => {
         setTodo([...todo.filter((card: Task) => card.id !== item.id)])
     }
 
+    /**
+     * Изменяет задачу в поле редактирования
+     * @param {number} id индекс редактируемой задачи
+     */
     const editTask = (id: number) => {
         setEditTodoItem(todo[id - 1])
     }
 
+    // Ограничиваем длину текста задачи
     if (item.task.length >= 30) {
         item.task = item.task.slice(0, 30) + '...'
     }
@@ -40,7 +44,7 @@ const TodoItem = ({item, id, setTodo, todo, setEditTodoItem}:
         <li className={`todo-list__item ${colorStatus}`}>
             <div>{id}. {item.task} </div>
             <div className="icons">
-                <img src={require('../../assets/delete.png')} alt="delete_task" onClick={() => deleteTask(id)}/>
+                <img src={require('../../assets/delete.png')} alt="delete_task" onClick={deleteTask}/>
                 <img src={require('../../assets/edit.png')} alt="edit_task" onClick={() => editTask(id)}/>
             </div>
         </li>

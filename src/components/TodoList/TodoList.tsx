@@ -1,14 +1,7 @@
 import React, {useRef, MutableRefObject, useState} from 'react';
 import TodoItem from "./TodoItem";
 import './style.scss'
-
-type Task = {
-    id: number,
-    task: string,
-    status: string,
-    executor: string,
-    comment: string
-}
+import  {Task} from "../App/App";
 
 
 const TodoList = ({todo, setTodo, setEditTodoItem, editTodoItem}
@@ -17,20 +10,36 @@ const TodoList = ({todo, setTodo, setEditTodoItem, editTodoItem}
     const inputRef = useRef() as MutableRefObject<HTMLInputElement>;
     const [value, setValue] = useState('')
 
+    //Новый массив, включающий себя задачи, подходящие под условия поиска
     const filteredListTodos = todo.filter(item => {
         return item.task.toLowerCase().includes(value.toLowerCase())
     })
 
+
+    /**
+     * Добавляет новую задачу
+     *
+     * @param {number} id индекс новой задачи
+     * @param {string} newValue значение из поля input
+     */
+    const todoId = (id, newValue) => {
+        let newTask: Task = {id: id, task: newValue, status: "Ожидает",
+            executor: "", comment: "" }
+        setTodo((todo: Task[]) => [...todo, newTask])
+        inputRef.current.value = ''
+    }
+
+    //Добавляет новую задачу в зависимости от того, пустой массив задач или в нём уже есть задачи
     const addTodo = () => {
         let newValue = inputRef.current.value;
         if (inputRef.current.value !== '') {
-            let newTask: Task = {id: todo[todo.length - 1].id + 1, task: newValue, status: "Ожидает",
-                executor: "", comment: "" }
-            setTodo((todo: Task[]) => [...todo, newTask])
-            inputRef.current.value = ''
+            if(todo.length === 0) {
+                todoId(1, newValue)
+            } else todoId(todo[todo.length - 1].id + 1, newValue)
         }
     }
 
+    //Добавляет задачу по нажатию клавиши Enter
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             addTodo()

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './style.scss'
-import { Task } from "../TodoList/TodoItem";
+import {Task} from "../App/App";
 
 const TodoEdit = ({editTodoItem, setEditTodoItem, todo, setTodo}
                       : {editTodoItem: Task, setEditTodoItem: Function, todo: Task[], setTodo: Function} ) => {
@@ -16,6 +16,32 @@ const TodoEdit = ({editTodoItem, setEditTodoItem, todo, setTodo}
         setExecutor(editTodoItem.executor)
         setComment(editTodoItem.comment)
     }, [editTodoItem])
+
+    /**
+     * Изменяет редактируемую задачу в todo листе
+     * @param event
+     */
+
+    const editTodoList = (event) => {
+            event.preventDefault();
+            let indexItem = todo.indexOf(editTodoItem);
+            let newArr = todo.slice();
+            newArr[indexItem] = {
+                id: editTodoItem.id,
+                task: task,
+                status: status,
+                executor: executor,
+                comment: comment
+            };
+            setTodo(newArr);
+            setEditTodoItem({
+                id: 0,
+                task: "",
+                status: "",
+                executor: "",
+                comment: ""
+            });
+    }
 
     return (
         <div className="todo-list__edit-item">
@@ -47,26 +73,7 @@ const TodoEdit = ({editTodoItem, setEditTodoItem, todo, setTodo}
                                   value={comment}
                                   onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setComment(event.target.value)}/>
                         <button className="btn edit__task"
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    let indexItem = todo.indexOf(editTodoItem);
-                                    let newArr = todo.slice();
-                                    newArr[indexItem] = {
-                                        id: editTodoItem.id,
-                                        task: task,
-                                        status: status,
-                                        executor: executor,
-                                        comment: comment
-                                    };
-                                    setTodo(newArr);
-                                    setEditTodoItem({
-                                        id: 0,
-                                        task: "",
-                                        status: "",
-                                        executor: "",
-                                        comment: ""
-                                    });
-                                }}>
+                                onClick={editTodoList}>
                             Редактировать
                         </button>
                     </form>

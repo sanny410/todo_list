@@ -1,13 +1,27 @@
-import React, { useState} from 'react';
+import React, {useEffect,  useState} from 'react';
 import './App.scss';
 import TodoList from '../TodoList/TodoList'
 import TodoEdit from "../TodoEdit/TodoEdit";
-import data from "../../data.json";
-import { Task} from "../TodoList/TodoItem";
+
+//Задаю тип объекта задачи
+export type Task = {
+    id: number,
+    task: string,
+    status: string,
+    executor: string,
+    comment: string
+}
+
 
 function App() {
-    const [ todo, setTodo ] = useState(data || []);
+    const [ todo, setTodo ] = useState<Task[]>(() => JSON.parse(localStorage.getItem("todos") as string) || []);
     const [ editTodoItem, setEditTodoItem ] = useState<Task>({id: 0, task: '', status: '', executor: '', comment: ''});
+
+
+    //Обновляю localstorage при каждом изменении списка задач
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todo));
+    },[todo])
 
 
   return (
